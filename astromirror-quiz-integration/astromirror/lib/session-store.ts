@@ -1,39 +1,57 @@
 // AstroMirror Quiz Session Store
-// In-memory implementation for development
-// Replace with Supabase in production
+// Supabase implementation
 
-import type { QuizSession, QuizResult } from '../types/quiz';
+import { createClient } from '@/lib/supabase/server';
+import type { QuizSession, QuizResult, ScoreState } from '@/types/quiz';
+import type { DbQuizSession, DbQuizResult } from '@/types/database';
 
-// In-memory stores
-const sessions = new Map<string, QuizSession>();
-const results = new Map<string, QuizResult>();
-
-// Session TTL: 24 hours
-const SESSION_TTL_MS = 24 * 60 * 60 * 1000;
+function mapDbToSession(db: DbQuizSession): QuizSession {
+  return {
+    id: db.id,
+    started_at: db.started_at,
+    answers: db.answers,
+    current_question: db.current_question,
+    completed_at: db.completed_at ?? undefined,
+    profile_id: undefined, // Loaded separately from results
+  };
+}
 
 /**
  * Save a quiz session
  */
 export async function saveSession(session: QuizSession): Promise<void> {
-  sessions.set(session.id, { ...session });
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) throw new Error('Not authenticated');
+
+  const { error } = await supabase.from('quiz_sessions').upsert({
+    id: session.id,
+    user_id: user.id,
+    started_at: session.started_at,
+    answers: session.answers,
+    current_question: session.current_question,
+    completed_at: session.completed_at ?? null,
+  });
+
+  if (error) throw new Error(`Failed to save session: ${error.message}`);
 }
 
 /**
  * Get a quiz session by ID
  */
 export async function getSession(sessionId: string): Promise<QuizSession | null> {
-  const session = sessions.get(sessionId);
-  
-  if (!session) return null;
-  
-  // Check TTL
-  const startedAt = new Date(session.started_at).getTime();
-  if (Date.now() - startedAt > SESSION_TTL_MS) {
-    sessions.delete(sessionId);
-    return null;
-  }
-  
-  return { ...session };
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from('quiz_sessions')
+    .select('*')
+    .eq('id', sessionId)
+    .single();
+
+  if (error || !data) return null;
+
+  return mapDbToSession(data as DbQuizSession);
 }
 
 /**
@@ -45,12 +63,11 @@ export async function updateSessionAnswer(
   answerId: string
 ): Promise<QuizSession | null> {
   const session = await getSession(sessionId);
-  
   if (!session) return null;
-  
+
   session.answers[questionId] = answerId;
   session.current_question = Object.keys(session.answers).length;
-  
+
   await saveSession(session);
   return session;
 }
@@ -63,12 +80,11 @@ export async function completeSession(
   profileId: string
 ): Promise<QuizSession | null> {
   const session = await getSession(sessionId);
-  
   if (!session) return null;
-  
+
   session.completed_at = new Date().toISOString();
   session.profile_id = profileId;
-  
+
   await saveSession(session);
   return session;
 }
@@ -77,51 +93,79 @@ export async function completeSession(
  * Save quiz result
  */
 export async function saveResult(result: QuizResult): Promise<void> {
-  results.set(result.session_id, { ...result });
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) throw new Error('Not authenticated');
+
+  const { error } = await supabase.from('quiz_results').insert({
+    session_id: result.session_id,
+    user_id: user.id,
+    profile_id: result.profile.id,
+    scores: result.scores,
+    is_fallback: result.is_fallback,
+    completed_at: result.completed_at,
+  });
+
+  if (error) throw new Error(`Failed to save result: ${error.message}`);
 }
 
 /**
  * Get quiz result by session ID
  */
 export async function getResult(sessionId: string): Promise<QuizResult | null> {
-  const result = results.get(sessionId);
-  return result ? { ...result } : null;
-}
+  const supabase = await createClient();
 
-/**
- * Cleanup expired sessions (call periodically)
- */
-export function cleanupExpiredSessions(): number {
-  const now = Date.now();
-  let cleaned = 0;
-  
-  for (const [id, session] of sessions.entries()) {
-    const startedAt = new Date(session.started_at).getTime();
-    if (now - startedAt > SESSION_TTL_MS) {
-      sessions.delete(id);
-      cleaned++;
-    }
-  }
-  
-  return cleaned;
-}
+  const { data, error } = await supabase
+    .from('quiz_results')
+    .select('*')
+    .eq('session_id', sessionId)
+    .single();
 
-/**
- * Get session statistics (for analytics)
- */
-export function getSessionStats(): {
-  active: number;
-  completed: number;
-  results: number;
-} {
-  let completed = 0;
-  for (const session of sessions.values()) {
-    if (session.completed_at) completed++;
-  }
-  
+  if (error || !data) return null;
+
+  const dbResult = data as DbQuizResult;
+
+  // Note: profile object must be loaded from quiz data JSON separately
+  // Return partial result with profile_id for caller to resolve
   return {
-    active: sessions.size - completed,
-    completed,
-    results: results.size,
+    session_id: dbResult.session_id,
+    profile: { id: dbResult.profile_id } as any, // Caller resolves full profile
+    scores: dbResult.scores as ScoreState,
+    completed_at: dbResult.completed_at,
+    is_fallback: dbResult.is_fallback,
   };
+}
+
+/**
+ * Get all results for current user
+ */
+export async function getUserResults(): Promise<DbQuizResult[]> {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from('quiz_results')
+    .select('*')
+    .order('completed_at', { ascending: false });
+
+  if (error) return [];
+
+  return data as DbQuizResult[];
+}
+
+/**
+ * Get single result by ID
+ */
+export async function getResultById(resultId: string): Promise<DbQuizResult | null> {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from('quiz_results')
+    .select('*')
+    .eq('id', resultId)
+    .single();
+
+  if (error || !data) return null;
+
+  return data as DbQuizResult;
 }
