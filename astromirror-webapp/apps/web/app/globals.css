@@ -1,0 +1,314 @@
+/**
+ * AstroMirror - Global Styles
+ * Tailwind CSS + Custom Design Tokens
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+
+:root {
+  /* Core Colors */
+  --bg-obsidian: #070708;
+  --bg-graphite: #0F1012;
+  --surface-graphite: #0F1012;
+  --surface-elevated: #151619;
+  
+  /* Gold Spectrum */
+  --gold-primary: #D4AF37;
+  --gold-muted: #B8975E;
+  --gold-bright: #F5E8C7;
+  --gold-dim: #8B7355;
+  
+  /* Emerald/Green */
+  --emerald-deep: #0F3D2E;
+  --emerald-accent: #1A5C45;
+  --emerald-glow: rgba(15, 61, 46, 0.3);
+  
+  /* Text */
+  --text-ivory: #F6F0E1;
+  --text-mist: #CFC7B8;
+  --text-dim: #8A8580;
+  
+  /* Borders */
+  --border-subtle: rgba(212, 175, 55, 0.1);
+  --border-gold: rgba(212, 175, 55, 0.3);
+  
+  /* Shadows */
+  --shadow-gold-glow: 0 0 40px rgba(212, 175, 55, 0.1);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  
+  /* Typography */
+  --font-display: var(--font-cinzel), 'Cinzel', serif;
+  --font-body: var(--font-inter), 'Inter', sans-serif;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+@layer base {
+  * {
+    @apply border-border-subtle;
+  }
+  
+  body {
+    @apply bg-obsidian text-ivory font-body;
+    font-feature-settings: 'liga' 1, 'kern' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-wide;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+  }
+  
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold leading-snug;
+  }
+  
+  h3 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+  
+  p {
+    @apply leading-relaxed text-mist;
+  }
+  
+  a {
+    @apply text-gold transition-colors duration-300 hover:text-gold-bright;
+  }
+  
+  ::selection {
+    @apply bg-gold/20 text-ivory;
+  }
+}
+
+/* ============================================
+   COMPONENT STYLES
+   ============================================ */
+
+@layer components {
+  /* Cards */
+  .card {
+    @apply bg-graphite/80 backdrop-blur-xl rounded-2xl border border-gold/10 p-6 md:p-8;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .card-elevated {
+    @apply card hover:border-gold/30 transition-all duration-500;
+  }
+  
+  .card-elevated:hover {
+    box-shadow: var(--shadow-gold-glow);
+  }
+  
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium transition-all duration-300;
+    @apply focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-obsidian;
+  }
+  
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-gold to-gold-muted text-obsidian;
+    @apply hover:from-gold-bright hover:to-gold hover:shadow-lg;
+  }
+  
+  .btn-ghost {
+    @apply btn border border-gold/30 text-gold bg-transparent;
+    @apply hover:bg-gold/10 hover:border-gold/50;
+  }
+  
+  .btn-emerald {
+    @apply btn bg-emerald-deep text-ivory border border-emerald-accent/30;
+    @apply hover:bg-emerald-accent hover:border-emerald-accent;
+  }
+  
+  /* Text Effects */
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold to-gold-muted bg-clip-text text-transparent;
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  
+  /* Ornaments */
+  .ornament-line {
+    @apply h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent;
+  }
+  
+  .ornament-diamond {
+    @apply w-2 h-2 rotate-45 bg-gold/50;
+  }
+  
+  /* Input Fields */
+  .input {
+    @apply w-full px-4 py-3 bg-graphite border border-gold/20 rounded-xl text-ivory;
+    @apply placeholder:text-mist/50 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/30;
+    @apply transition-all duration-300;
+  }
+  
+  /* Voice Widget Container */
+  .voice-widget-shell {
+    @apply card relative overflow-hidden;
+    @apply before:absolute before:inset-0 before:bg-gradient-to-b before:from-emerald-deep/20 before:to-transparent before:pointer-events-none;
+  }
+  
+  /* Quiz Answer Cards */
+  .quiz-answer {
+    @apply card cursor-pointer select-none;
+    @apply hover:border-gold/40 hover:bg-graphite/90;
+    @apply active:scale-[0.98];
+    @apply transition-all duration-200;
+  }
+  
+  .quiz-answer.selected {
+    @apply border-gold bg-gold/5;
+    box-shadow: var(--shadow-gold-glow);
+  }
+  
+  /* Profile Cards */
+  .profile-card {
+    @apply card relative overflow-hidden;
+    @apply before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-gradient-to-r before:from-gold via-gold-muted before:to-gold;
+  }
+  
+  /* Loading States */
+  .skeleton {
+    @apply animate-pulse bg-graphite rounded-lg;
+  }
+  
+  .spinner {
+    @apply animate-spin w-5 h-5 border-2 border-gold/30 border-t-gold rounded-full;
+  }
+}
+
+/* ============================================
+   UTILITY STYLES
+   ============================================ */
+
+@layer utilities {
+  /* Spacing */
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+  
+  .container-narrow {
+    @apply max-w-3xl mx-auto px-4 md:px-6;
+  }
+  
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 md:px-6 lg:px-8;
+  }
+  
+  /* Animations */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  .pulse-gold {
+    animation: pulseGold 2s ease-in-out infinite;
+  }
+  
+  /* Glassmorphism */
+  .glass {
+    @apply bg-graphite/60 backdrop-blur-xl;
+  }
+  
+  /* Hide scrollbar */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGold {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-graphite);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dim);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-muted);
+}
+
+/* ============================================
+   ELEVENLABS WIDGET OVERRIDES
+   ============================================ */
+
+elevenlabs-convai {
+  --elevenlabs-primary-color: var(--gold-primary) !important;
+  --elevenlabs-background-color: var(--bg-graphite) !important;
+  --elevenlabs-text-color: var(--text-ivory) !important;
+}
