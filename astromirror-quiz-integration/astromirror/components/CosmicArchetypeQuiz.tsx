@@ -199,7 +199,7 @@ export default function CosmicArchetypeQuiz({
   if (state === 'error') {
     return (
       <div className="quiz-container" style={{ background: tokens.bg_primary }}>
-        <motion.div {...fadeInUp} className="error-card">
+        <motion.div variants={fadeInUp} initial="hidden" animate="visible" className="error-card">
           <h2 style={{ color: tokens.text_ivory }}>Etwas ist schiefgelaufen</h2>
           <p style={{ color: tokens.text_mist }}>{error}</p>
           <button
