@@ -1,5 +1,5 @@
 // AstroMirror Quiz Session Store
-// Supabase implementation
+// Supabase implementation with anonymous sessions
 
 import { createClient } from '@/lib/supabase/server';
 import type { QuizSession, QuizResult, ScoreState } from '@/types/quiz';
@@ -17,13 +17,28 @@ function mapDbToSession(db: DbQuizSession): QuizSession {
 }
 
 /**
+ * Ensure we have a user (anonymous if not logged in)
+ */
+async function ensureUser(supabase: Awaited<ReturnType<typeof createClient>>) {
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (user) return user;
+
+  // Sign in anonymously
+  const { data, error } = await supabase.auth.signInAnonymously();
+  if (error) throw new Error(`Failed to create anonymous session: ${error.message}`);
+
+  return data.user;
+}
+
+/**
  * Save a quiz session
  */
 export async function saveSession(session: QuizSession): Promise<void> {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const user = await ensureUser(supabase);
 
-  if (!user) throw new Error('Not authenticated');
+  if (!user) throw new Error('Failed to get or create user');
 
   const { error } = await supabase.from('quiz_sessions').upsert({
     id: session.id,
@@ -94,9 +109,9 @@ export async function completeSession(
  */
 export async function saveResult(result: QuizResult): Promise<void> {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const user = await ensureUser(supabase);
 
-  if (!user) throw new Error('Not authenticated');
+  if (!user) throw new Error('Failed to get or create user');
 
   const { error } = await supabase.from('quiz_results').insert({
     session_id: result.session_id,

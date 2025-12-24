@@ -1,3 +1,8 @@
+-- AstroMirror Database Schema
+-- Uses anonymous authentication - no login required
+-- IMPORTANT: Enable "Allow anonymous sign-ins" in Supabase Dashboard:
+-- Authentication > Providers > Anonymous > Enable
+
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 

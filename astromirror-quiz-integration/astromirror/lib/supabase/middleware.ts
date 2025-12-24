@@ -29,31 +29,8 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  // Protected routes
-  const protectedPaths = ['/quiz', '/profile'];
-  const isProtectedPath = protectedPaths.some((path) =>
-    request.nextUrl.pathname.startsWith(path)
-  );
-
-  if (isProtectedPath && !user) {
-    const url = request.nextUrl.clone();
-    url.pathname = '/login';
-    url.searchParams.set('redirect', request.nextUrl.pathname);
-    return NextResponse.redirect(url);
-  }
-
-  // Redirect logged-in users away from login
-  if (request.nextUrl.pathname === '/login' && user) {
-    const redirect = request.nextUrl.searchParams.get('redirect') || '/quiz/cosmic-archetype';
-    const url = request.nextUrl.clone();
-    url.pathname = redirect;
-    url.search = '';
-    return NextResponse.redirect(url);
-  }
+  // Just refresh the session, no auth redirects needed for anonymous sessions
+  await supabase.auth.getUser();
 
   return supabaseResponse;
 }
