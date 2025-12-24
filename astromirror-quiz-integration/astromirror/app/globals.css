@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AstroMirror Base Styles */
+:root {
+  --bg-obsidian: #070708;
+  --bg-graphite: #0F1012;
+  --gold-primary: #D4AF37;
+  --gold-muted: #B8975E;
+  --emerald-deep: #0F3D2E;
+  --text-ivory: #F6F0E1;
+  --text-mist: #CFC7B8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-obsidian);
+  color: var(--text-ivory);
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection styling */
+::selection {
+  background: var(--gold-muted);
+  color: var(--bg-obsidian);
+}
+
+/* Focus states for accessibility */
+:focus-visible {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-graphite);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
+}
+
+/* Luxury understatement button base */
+.btn-luxury {
+  @apply px-8 py-4 border transition-all duration-300;
+  background: transparent;
+  border-color: var(--gold-muted);
+  color: var(--gold-primary);
+  letter-spacing: 0.1em;
+}
+
+.btn-luxury:hover {
+  background: var(--emerald-deep);
+  border-color: var(--gold-primary);
+}
+
+/* Card surfaces */
+.surface {
+  background: var(--bg-graphite);
+  border: 1px solid rgba(184, 151, 94, 0.2);
+}
+
+.surface:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+}
