@@ -12,39 +12,41 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // Colors
+      // Colors (astro.ai design system)
       colors: {
-        // Core
-        obsidian: '#070708',
-        graphite: '#0F1012',
-        
+        // Core backgrounds
+        obsidian: '#06070A',
+        graphite: '#0B0D12',
+
         // Gold spectrum
         gold: {
           DEFAULT: '#D4AF37',
           primary: '#D4AF37',
+          secondary: '#B89A4A',
           muted: '#B8975E',
           bright: '#F5E8C7',
           dim: '#8B7355',
         },
-        
-        // Emerald
+
+        // Emerald/Dark accent
         emerald: {
           deep: '#0F3D2E',
-          accent: '#1A5C45',
+          accent: '#2E3D2F',
         },
-        
+
         // Text
-        ivory: '#F6F0E1',
+        ivory: '#E8E1D6',
         mist: '#CFC7B8',
-        
+
         // Borders
         'border-subtle': 'rgba(212, 175, 55, 0.1)',
         'border-gold': 'rgba(212, 175, 55, 0.3)',
       },
-      
+
       // Typography
       fontFamily: {
         display: ['var(--font-cinzel)', 'Cinzel', 'serif'],
+        'serif-text': ['var(--font-cormorant)', 'Cormorant Garamond', 'serif'],
         body: ['var(--font-inter)', 'Inter', 'sans-serif'],
       },
       
@@ -118,7 +120,7 @@ const config: Config = {
       typography: {
         DEFAULT: {
           css: {
-            color: '#F6F0E1',
+            color: '#E8E1D6',
             a: {
               color: '#D4AF37',
               '&:hover': {
@@ -130,15 +132,15 @@ const config: Config = {
               fontFamily: 'var(--font-cinzel), Cinzel, serif',
             },
             h2: {
-              color: '#F6F0E1',
+              color: '#E8E1D6',
               fontFamily: 'var(--font-cinzel), Cinzel, serif',
             },
             h3: {
-              color: '#F6F0E1',
+              color: '#E8E1D6',
               fontFamily: 'var(--font-cinzel), Cinzel, serif',
             },
             strong: {
-              color: '#F6F0E1',
+              color: '#E8E1D6',
             },
             blockquote: {
               color: '#CFC7B8',

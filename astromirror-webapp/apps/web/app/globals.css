@@ -12,38 +12,40 @@
    ============================================ */
 
 :root {
-  /* Core Colors */
-  --bg-obsidian: #070708;
-  --bg-graphite: #0F1012;
-  --surface-graphite: #0F1012;
+  /* Core Colors (astro.ai design system) */
+  --bg-obsidian: #06070A;
+  --bg-graphite: #0B0D12;
+  --surface-graphite: #0B0D12;
   --surface-elevated: #151619;
-  
+
   /* Gold Spectrum */
   --gold-primary: #D4AF37;
+  --gold-secondary: #B89A4A;
   --gold-muted: #B8975E;
   --gold-bright: #F5E8C7;
   --gold-dim: #8B7355;
-  
+
   /* Emerald/Green */
   --emerald-deep: #0F3D2E;
-  --emerald-accent: #1A5C45;
+  --emerald-accent: #2E3D2F;
   --emerald-glow: rgba(15, 61, 46, 0.3);
-  
+
   /* Text */
-  --text-ivory: #F6F0E1;
+  --text-ivory: #E8E1D6;
   --text-mist: #CFC7B8;
   --text-dim: #8A8580;
-  
+
   /* Borders */
   --border-subtle: rgba(212, 175, 55, 0.1);
   --border-gold: rgba(212, 175, 55, 0.3);
-  
+
   /* Shadows */
-  --shadow-gold-glow: 0 0 40px rgba(212, 175, 55, 0.1);
+  --shadow-gold-glow: 0 0 15px rgba(212, 175, 55, 0.2);
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
-  
+
   /* Typography */
   --font-display: var(--font-cinzel), 'Cinzel', serif;
+  --font-serif-text: var(--font-cormorant), 'Cormorant Garamond', serif;
   --font-body: var(--font-inter), 'Inter', sans-serif;
 }
 
@@ -111,22 +113,35 @@
     box-shadow: var(--shadow-gold-glow);
   }
   
-  /* Buttons */
+  /* Buttons (astro.ai style) */
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full;
+    @apply uppercase tracking-widest text-sm font-serif-text;
+    @apply transition-all duration-500 ease-out;
     @apply focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-obsidian;
   }
-  
+
   .btn-primary {
-    @apply btn bg-gradient-to-r from-gold to-gold-muted text-obsidian;
-    @apply hover:from-gold-bright hover:to-gold hover:shadow-lg;
+    @apply btn border border-gold text-gold bg-transparent;
+    @apply hover:bg-gold hover:text-obsidian;
+    box-shadow: 0 0 0 rgba(212, 175, 55, 0);
+    transition: all 0.5s ease-out;
   }
-  
+
+  .btn-primary:hover {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  }
+
   .btn-ghost {
-    @apply btn border border-gold/30 text-gold bg-transparent;
-    @apply hover:bg-gold/10 hover:border-gold/50;
+    @apply btn border border-transparent text-ivory;
+    @apply hover:text-gold hover:border-gold/30;
   }
-  
+
+  .btn-secondary {
+    @apply btn border border-emerald-accent text-gold-secondary bg-transparent;
+    @apply hover:border-gold-secondary hover:bg-graphite;
+  }
+
   .btn-emerald {
     @apply btn bg-emerald-deep text-ivory border border-emerald-accent/30;
     @apply hover:bg-emerald-accent hover:border-emerald-accent;

@@ -4,7 +4,7 @@
  */
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
-import { Inter, Cinzel } from 'next/font/google'
+import { Inter, Cinzel, Cormorant_Garamond } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({
@@ -17,6 +17,13 @@ const cinzel = Cinzel({
   subsets: ['latin'],
   variable: '--font-cinzel',
   weight: ['400', '500', '600', '700'],
+  display: 'swap',
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-cormorant',
+  weight: ['300', '400', '600'],
   display: 'swap',
 })
 
@@ -66,7 +73,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#070708',
+  themeColor: '#06070A',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
@@ -78,8 +85,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="de" className={`${inter.variable} ${cinzel.variable}`}>
-      <body className="min-h-screen bg-obsidian text-ivory antialiased">
+    <html lang="de" className={`${inter.variable} ${cinzel.variable} ${cormorant.variable}`}>
+      <body className="min-h-screen bg-obsidian text-ivory antialiased font-body">
         {/* Subtle cosmic background */}
         <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(212,175,55,0.03)_0%,transparent_50%)]" />

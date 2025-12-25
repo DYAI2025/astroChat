@@ -8,83 +8,60 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-obsidian/80 backdrop-blur-xl border-b border-gold/10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl font-display text-gradient-gold">
-            AstroMirror
+      <nav className="fixed top-0 left-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-gradient-to-b from-obsidian to-transparent pointer-events-none">
+        <Link href="/" className="font-display text-gold text-xl tracking-widest pointer-events-auto cursor-pointer">
+          astromirror
+        </Link>
+
+        <div className="hidden md:flex gap-8 pointer-events-auto">
+          <Link href="/quiz/cosmic-archetype" className="text-ivory/70 hover:text-gold text-xs uppercase tracking-widest transition-colors">
+            Quiz
           </Link>
-          
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/quiz/cosmic-archetype" className="text-mist hover:text-ivory transition-colors">
-              Archetyp-Quiz
-            </Link>
-            <Link href="/pricing" className="text-mist hover:text-ivory transition-colors">
-              Preise
-            </Link>
-            <Link href="/faq" className="text-mist hover:text-ivory transition-colors">
-              FAQ
-            </Link>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <Link href="/login" className="text-mist hover:text-ivory transition-colors">
-              Anmelden
-            </Link>
-            <Link href="/signup" className="btn-primary text-sm py-2 px-4">
-              Kostenlos starten
-            </Link>
-          </div>
+          <Link href="/pricing" className="text-ivory/70 hover:text-gold text-xs uppercase tracking-widest transition-colors">
+            Preise
+          </Link>
+          <Link href="/dashboard" className="text-ivory/70 hover:text-gold text-xs uppercase tracking-widest transition-colors">
+            Dashboard
+          </Link>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20">
+      <section className="relative min-h-[60vh] flex items-center justify-center pt-20">
         {/* Background Effects */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-emerald-deep/10 rounded-full blur-3xl" />
         </div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-tight">
-            <span className="text-gradient-gold">Dein kosmischer</span>
-            <br />
-            <span className="text-ivory">Spiegel</span>
-          </h1>
-          
-          <p className="mt-8 text-xl md:text-2xl text-mist max-w-2xl mx-auto leading-relaxed">
-            Premium-Astrologie mit Voice-Agent. 
-            Persönlich. Präzise. Spiegelnd.
-          </p>
-          
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/signup" className="btn-primary text-lg px-8 py-4 w-full sm:w-auto">
-              Jetzt starten – Kostenlos
-            </Link>
-            <Link href="/quiz/cosmic-archetype" className="btn-ghost text-lg px-8 py-4 w-full sm:w-auto">
-              Erst Quiz machen
-            </Link>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-12">
+          <div className="space-y-4">
+            <h1 className="text-6xl md:text-8xl text-ivory font-display tracking-widest">
+              astromirror
+            </h1>
+            <p className="text-gold-secondary font-serif-text text-xl md:text-2xl tracking-wide italic">
+              Dein kosmischer Spiegel.
+            </p>
           </div>
-          
-          <p className="mt-6 text-sm text-mist/50">
-            Keine Kreditkarte erforderlich • 3 Voice-Minuten gratis
-          </p>
-        </div>
-        
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-gold/30 rounded-full flex items-start justify-center p-1">
-            <div className="w-1 h-2 bg-gold/50 rounded-full" />
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <Link href="/signup" className="btn-primary">
+              Kostenlos starten
+            </Link>
+            <Link href="/quiz/cosmic-archetype" className="btn-secondary">
+              Archetyp-Quiz
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-24 bg-graphite/30">
+      <section className="py-24">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-display text-center text-ivory mb-16">
-            Astronomische Präzision trifft <span className="text-gradient-gold">moderne KI</span>
-          </h2>
+          <div className="text-center space-y-4 mb-24">
+            <h2 className="text-4xl font-display text-gold tracking-widest uppercase">Deine Konstellation</h2>
+            <div className="w-24 h-[1px] bg-gold/50 mx-auto"></div>
+          </div>
           
           <div className="grid md:grid-cols-3 gap-8">
             {/* Feature 1 */}
@@ -92,9 +69,9 @@ export default function LandingPage() {
               <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
                 🎙️
               </div>
-              <h3 className="text-xl font-display text-ivory mb-3">Voice Agent</h3>
-              <p className="text-mist/80 leading-relaxed">
-                Sprich mit deinem kosmischen Spiegel. Echtzeit-Reflexion basierend auf 
+              <h3 className="text-2xl font-display text-ivory mb-3">Voice Agent</h3>
+              <p className="text-ivory/70 font-serif-text leading-relaxed">
+                Sprich mit deinem kosmischen Spiegel. Echtzeit-Reflexion basierend auf
                 deinem Radix und aktuellen Transiten.
               </p>
             </div>
@@ -104,21 +81,21 @@ export default function LandingPage() {
               <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-emerald-deep/30 to-emerald-deep/10 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
                 🔮
               </div>
-              <h3 className="text-xl font-display text-ivory mb-3">Swiss Ephemeris</h3>
-              <p className="text-mist/80 leading-relaxed">
-                Professionelle Berechnungen wie Astrologen sie nutzen. 
+              <h3 className="text-2xl font-display text-ivory mb-3">Swiss Ephemeris</h3>
+              <p className="text-ivory/70 font-serif-text leading-relaxed">
+                Professionelle Berechnungen wie Astrologen sie nutzen.
                 Placidus-Häuser mit intelligentem Polar-Fallback.
               </p>
             </div>
-            
+
             {/* Feature 3 */}
             <div className="card group hover:border-gold/30 transition-all duration-300">
               <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-gold/20 to-emerald-deep/20 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
                 ✨
               </div>
-              <h3 className="text-xl font-display text-ivory mb-3">Tägliche Transite</h3>
-              <p className="text-mist/80 leading-relaxed">
-                Aktuelle Planetenstellungen zu deinem Geburtshoroskop. 
+              <h3 className="text-2xl font-display text-ivory mb-3">Tägliche Transite</h3>
+              <p className="text-ivory/70 font-serif-text leading-relaxed">
+                Aktuelle Planetenstellungen zu deinem Geburtshoroskop.
                 Verstehe kosmische Energien im Kontext.
               </p>
             </div>
@@ -175,7 +152,7 @@ export default function LandingPage() {
           </div>
           
           <div className="mt-16 text-center">
-            <Link href="/signup" className="btn-primary text-lg px-8 py-4">
+            <Link href="/signup" className="btn-primary">
               Kostenlos registrieren
             </Link>
           </div>
@@ -183,18 +160,15 @@ export default function LandingPage() {
       </section>
 
       {/* Quiz CTA */}
-      <section className="py-24 bg-gradient-to-br from-emerald-deep/20 to-obsidian">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <span className="text-gold text-sm uppercase tracking-wider">Noch unsicher?</span>
-          <h2 className="text-3xl md:text-4xl font-display text-ivory mt-4 mb-6">
-            Entdecke deinen kosmischen Archetyp
-          </h2>
-          <p className="text-mist/80 text-lg mb-8">
+      <section className="py-24 bg-graphite/50 rounded-2xl mx-6">
+        <div className="max-w-3xl mx-auto px-6 text-center space-y-8">
+          <h3 className="text-3xl font-display text-ivory">Entdecke deinen Archetyp</h3>
+          <p className="max-w-xl mx-auto text-ivory/60 font-serif-text leading-relaxed">
             7 Fragen. 2 Minuten. Keine Anmeldung nötig.
             Finde heraus, welche astrologische Energie dich prägt.
           </p>
-          <Link href="/quiz/cosmic-archetype" className="btn-primary text-lg px-8 py-4">
-            Quiz starten →
+          <Link href="/quiz/cosmic-archetype" className="btn-primary">
+            Quiz starten
           </Link>
         </div>
       </section>
