@@ -147,7 +147,7 @@ export default function LiWeiPage() {
                     >
                         <p className="text-mist/40 text-[10px] uppercase tracking-widest mb-2">Fokus</p>
                         <p className="text-ivory text-sm italic font-serif-text">
-                            "{agent.quote}"
+                            &ldquo;{agent.quote}&rdquo;
                         </p>
                     </motion.div>
                 </motion.div>

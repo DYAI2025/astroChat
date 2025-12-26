@@ -121,7 +121,7 @@ export default function DashboardPage() {
                 onClick={() => setShowWelcome(false)}
                 className="btn-primary px-6 py-2"
               >
-                Los geht's
+                Los geht&apos;s
               </button>
             </motion.div>
           </motion.div>

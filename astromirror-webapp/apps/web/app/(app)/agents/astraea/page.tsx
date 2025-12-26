@@ -264,7 +264,7 @@ export default function AstraeaPage() {
                     Philosophie
                 </div>
                 <blockquote className="text-xl md:text-2xl font-serif-text italic text-mist/60">
-                    "{agent.quote}"
+                    &ldquo;{agent.quote}&rdquo;
                 </blockquote>
             </motion.section>
 
