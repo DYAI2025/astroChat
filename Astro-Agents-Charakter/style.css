@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:italic,wght@400;700&display=swap');
+
+:root {
+    --primary-li: #78350f;
+    --primary-astraea: #60a5fa;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.font-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Patterns */
+.hero-pattern {
+    background-image: radial-gradient(#d6d3d1 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.grid-pattern {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+
+/* Custom Highlight Effect */
+.keyword-highlight {
+    position: relative;
+    color: inherit;
+    font-weight: 500;
+    transition: color 0.4s ease;
+    cursor: default;
+}
+
+.section-li .keyword-highlight:hover {
+    color: var(--primary-li);
+}
+
+.section-astraea .keyword-highlight:hover {
+    color: var(--primary-astraea);
+}
+
+.keyword-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.4s ease;
+    opacity: 0.3;
+}
+
+.keyword-highlight:hover::after {
+    width: 100%;
+}
+
+/* Animations */
+.animate-pulse-slow {
+    animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.1); }
+}
+
+/* Reveal effects */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.reveal-image {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-image.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Dashboard Specific Styles */
+#bazi-viz svg, #celestial-viz svg {
+    overflow: visible;
+}
+
+.bazi-node {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.bazi-node:hover {
+    transform: scale(1.1);
+}
+
+#celestial-viz {
+    filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.2));
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}

@@ -493,7 +493,6 @@ function getArchetypeIcon(profileId: string): string {
     'solar_mutable_air': '💨',
     'lunar_fixed_earth': '🏔️',
     'solar_cardinal_earth': '🏛️',
-    'lunar_mutable_water': '👁️',
     'solar_fixed_fire': '👑',
     'lunar_cardinal_water': '🌙',
     'cosmic_hybrid': '🌀',

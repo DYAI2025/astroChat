@@ -32,7 +32,7 @@ interface UserProfile {
 export default function DashboardPage() {
   const searchParams = useSearchParams()
   const isWelcome = searchParams.get('welcome') === 'true'
-  
+
   const [showWelcome, setShowWelcome] = useState(isWelcome)
   const [profile, setProfile] = useState<UserProfile | null>(null)
   const [insight, setInsight] = useState<DailyInsight | null>(null)
@@ -51,7 +51,7 @@ export default function DashboardPage() {
           voice_minutes_total: 3,
           has_chart: true,
         })
-        
+
         setInsight({
           day: new Date().toISOString().split('T')[0],
           sun_sign: 'Steinbock',
@@ -134,16 +134,51 @@ export default function DashboardPage() {
           Guten {new Date().getHours() < 12 ? 'Morgen' : new Date().getHours() < 18 ? 'Tag' : 'Abend'}, {profile?.name}
         </h1>
         <p className="text-mist/60 mt-1">
-          {new Date().toLocaleDateString('de-DE', { 
-            weekday: 'long', 
-            day: 'numeric', 
-            month: 'long' 
+          {new Date().toLocaleDateString('de-DE', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long'
           })}
         </p>
       </header>
 
+
       {/* Quick Actions */}
       <section className="grid grid-cols-2 gap-4 mb-8">
+        <Link
+          href="/profile"
+          className="card group hover:border-gold/30 transition-all duration-300"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              ✨
+            </div>
+            <div>
+              <h3 className="font-medium text-ivory">Mein Profil</h3>
+              <p className="text-xs text-mist/60">
+                Astro-Daten & Zeichen
+              </p>
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href="/agents"
+          className="card group hover:border-gold/30 transition-all duration-300"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-deep/30 to-emerald-deep/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              🌟
+            </div>
+            <div>
+              <h3 className="font-medium text-ivory">Astro-Berater</h3>
+              <p className="text-xs text-mist/60">
+                Li Wei & Astraea
+              </p>
+            </div>
+          </div>
+        </Link>
+
         <Link
           href="/voice"
           className="card group hover:border-gold/30 transition-all duration-300"
@@ -166,7 +201,7 @@ export default function DashboardPage() {
           className="card group hover:border-gold/30 transition-all duration-300"
         >
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-deep/30 to-emerald-deep/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
               ☉
             </div>
             <div>
@@ -179,10 +214,11 @@ export default function DashboardPage() {
         </Link>
       </section>
 
+
       {/* Today's Cosmic Weather */}
       <section className="mb-8">
         <h2 className="text-sm text-mist/60 uppercase tracking-wider mb-4">Kosmisches Wetter</h2>
-        
+
         <div className="card bg-gradient-to-br from-graphite to-obsidian">
           <div className="flex items-center gap-4 mb-4">
             <div className="text-4xl">🌙</div>
@@ -191,11 +227,11 @@ export default function DashboardPage() {
               <p className="text-sm text-mist/60">Sonne in {insight?.sun_sign}</p>
             </div>
           </div>
-          
+
           <p className="text-mist/80 mb-4 leading-relaxed">
             {insight?.insight_text}
           </p>
-          
+
           {/* Top Transits */}
           <div className="space-y-2">
             {insight?.top_transits.map((transit, i) => (
@@ -227,14 +263,14 @@ export default function DashboardPage() {
               </Link>
             )}
           </div>
-          
+
           <div className="flex items-end gap-4">
             <div className="flex-1">
               <div className="h-3 bg-graphite rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
-                  animate={{ 
-                    width: `${((profile?.voice_minutes_remaining || 0) / (profile?.voice_minutes_total || 1)) * 100}%` 
+                  animate={{
+                    width: `${((profile?.voice_minutes_remaining || 0) / (profile?.voice_minutes_total || 1)) * 100}%`
                   }}
                   className="h-full bg-gradient-to-r from-gold to-gold-muted"
                   transition={{ duration: 0.5 }}
@@ -244,7 +280,7 @@ export default function DashboardPage() {
                 {profile?.voice_minutes_remaining} von {profile?.voice_minutes_total} Minuten übrig
               </p>
             </div>
-            
+
             <Link href="/voice" className="btn-primary text-sm py-2 px-4">
               Starten
             </Link>
@@ -255,7 +291,7 @@ export default function DashboardPage() {
       {/* Explore */}
       <section>
         <h2 className="text-sm text-mist/60 uppercase tracking-wider mb-4">Entdecken</h2>
-        
+
         <div className="grid gap-4">
           <Link
             href="/quiz/cosmic-archetype"
@@ -270,7 +306,7 @@ export default function DashboardPage() {
             </div>
             <span className="text-mist/40">→</span>
           </Link>
-          
+
           <Link
             href="/whitepaper/placidus"
             className="card flex items-center gap-4 hover:border-gold/30 transition-all"

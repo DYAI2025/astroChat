@@ -10,6 +10,8 @@ import { useState } from 'react'
 
 const NAV_ITEMS = [
   { href: '/dashboard', label: 'Übersicht', icon: '◉' },
+  { href: '/profile', label: 'Profil', icon: '✨' },
+  { href: '/agents', label: 'Berater', icon: '🌟' },
   { href: '/chart', label: 'Radix', icon: '☉' },
   { href: '/voice', label: 'Voice', icon: '🎙️' },
   { href: '/settings', label: 'Einstellungen', icon: '⚙️' },

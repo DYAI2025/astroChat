@@ -1,0 +1,275 @@
+/**
+ * AstroMirror - Landing Page
+ * Premium Marketing Homepage
+ */
+import Link from 'next/link'
+
+export default function LandingPage() {
+  return (
+    <div className="min-h-screen">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-gradient-to-b from-obsidian to-transparent pointer-events-none">
+        <Link href="/" className="font-display text-gold text-xl tracking-widest pointer-events-auto cursor-pointer">
+          astromirror
+        </Link>
+
+        <div className="hidden md:flex gap-8 pointer-events-auto">
+          <Link href="/agents" className="text-ivory/70 hover:text-gold text-xs uppercase tracking-widest transition-colors">
+            Berater
+          </Link>
+          <Link href="/quiz/cosmic-archetype" className="text-ivory/70 hover:text-gold text-xs uppercase tracking-widest transition-colors">
+            Quiz
+          </Link>
+          <Link href="/pricing" className="text-ivory/70 hover:text-gold text-xs uppercase tracking-widest transition-colors">
+            Preise
+          </Link>
+          <Link href="/dashboard" className="text-ivory/70 hover:text-gold text-xs uppercase tracking-widest transition-colors">
+            Dashboard
+          </Link>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center pt-20">
+        {/* Background Effects */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-emerald-deep/10 rounded-full blur-3xl" />
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-12">
+          <div className="space-y-4">
+            <h1 className="text-6xl md:text-8xl text-ivory font-display tracking-widest">
+              astromirror
+            </h1>
+            <p className="text-gold-secondary font-serif-text text-xl md:text-2xl tracking-wide italic">
+              Dein kosmischer Spiegel.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <Link href="/signup" className="btn-primary">
+              Kostenlos starten
+            </Link>
+            <Link href="/agents" className="btn-secondary">
+              Astro-Berater
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center space-y-4 mb-24">
+            <h2 className="text-4xl font-display text-gold tracking-widest uppercase">Deine Konstellation</h2>
+            <div className="w-24 h-[1px] bg-gold/50 mx-auto"></div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Feature 1: AI Agents */}
+            <div className="card group hover:border-gold/30 transition-all duration-300">
+              <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-gold/30 to-gold/10 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                🌟
+              </div>
+              <h3 className="text-2xl font-display text-ivory mb-3">AI Berater</h3>
+              <p className="text-ivory/70 font-serif-text leading-relaxed">
+                Triff Li Wei und Astraea. Spezialisierte KIs für chinesische Metaphysik
+                und evolutionäre Astrologie.
+              </p>
+            </div>
+
+            {/* Feature 2: Voice */}
+            <div className="card group hover:border-gold/30 transition-all duration-300">
+              <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-emerald-deep/20 to-emerald-deep/5 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                🎙️
+              </div>
+              <h3 className="text-2xl font-display text-ivory mb-3">Voice Agent</h3>
+              <p className="text-ivory/70 font-serif-text leading-relaxed">
+                Sprich mit deinem kosmischen Spiegel. Echtzeit-Reflexion basierend auf
+                deinem Radix.
+              </p>
+            </div>
+
+            {/* Feature 3: Ephemeris */}
+            <div className="card group hover:border-gold/30 transition-all duration-300">
+              <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                🔮
+              </div>
+              <h3 className="text-2xl font-display text-ivory mb-3">Swiss Ephemeris</h3>
+              <p className="text-ivory/70 font-serif-text leading-relaxed">
+                Professionelle Berechnungen mit mathematischer Präzision.
+                Häuser, Aspekte und Transite.
+              </p>
+            </div>
+
+            {/* Feature 4: Profile */}
+            <div className="card group hover:border-gold/30 transition-all duration-300">
+              <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-gold/20 to-emerald-deep/20 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                ✨
+              </div>
+              <h3 className="text-2xl font-display text-ivory mb-3">Astro-Profil</h3>
+              <p className="text-ivory/70 font-serif-text leading-relaxed">
+                Dein persönlicher Bereich mit Elementen, Mondphasen und chinesischem
+                Tierkreiszeichen.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* How It Works */}
+      <section className="py-24">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-display text-center text-ivory mb-16">
+            In 3 Minuten <span className="text-gradient-gold">startklar</span>
+          </h2>
+
+          <div className="space-y-12">
+            {/* Step 1 */}
+            <div className="flex items-start gap-6">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold font-display text-xl">
+                1
+              </div>
+              <div>
+                <h3 className="text-xl font-display text-ivory mb-2">Geburtsdaten eingeben</h3>
+                <p className="text-mist/80">
+                  Datum, Uhrzeit und Ort. Je genauer, desto präziser dein Spiegel.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="flex items-start gap-6">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold font-display text-xl">
+                2
+              </div>
+              <div>
+                <h3 className="text-xl font-display text-ivory mb-2">Radix berechnen lassen</h3>
+                <p className="text-mist/80">
+                  Wir berechnen dein vollständiges Geburtshoroskop mit Swiss Ephemeris.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="flex items-start gap-6">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold font-display text-xl">
+                3
+              </div>
+              <div>
+                <h3 className="text-xl font-display text-ivory mb-2">Mit dem Spiegel sprechen</h3>
+                <p className="text-mist/80">
+                  Starte eine Voice-Session und reflektiere über Transite, Fragen, Themen.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 text-center">
+            <Link href="/signup" className="btn-primary">
+              Kostenlos registrieren
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Quiz CTA */}
+      <section className="py-24 bg-graphite/50 rounded-2xl mx-6">
+        <div className="max-w-3xl mx-auto px-6 text-center space-y-8">
+          <h3 className="text-3xl font-display text-ivory">Entdecke deinen Archetyp</h3>
+          <p className="max-w-xl mx-auto text-ivory/60 font-serif-text leading-relaxed">
+            7 Fragen. 2 Minuten. Keine Anmeldung nötig.
+            Finde heraus, welche astrologische Energie dich prägt.
+          </p>
+          <Link href="/quiz/cosmic-archetype" className="btn-primary">
+            Quiz starten
+          </Link>
+        </div>
+      </section>
+
+      {/* Pricing Preview */}
+      <section className="py-24">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-display text-center text-ivory mb-4">
+            Transparente Preise
+          </h2>
+          <p className="text-center text-mist/70 mb-16">
+            Starte kostenlos. Upgrade wenn du mehr willst.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            {/* Free */}
+            <div className="card">
+              <h3 className="text-xl font-display text-ivory mb-2">Free</h3>
+              <p className="text-3xl font-display text-gold mb-6">0 €<span className="text-lg text-mist/60">/Monat</span></p>
+              <ul className="space-y-3 text-mist/80 mb-8">
+                <li className="flex items-center gap-2">
+                  <span className="text-gold">✓</span> Vollständiges Radix
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-gold">✓</span> Tägliche Transit-Übersicht
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-gold">✓</span> 3 Voice-Minuten/Monat
+                </li>
+              </ul>
+              <Link href="/signup" className="btn-ghost w-full text-center">
+                Kostenlos starten
+              </Link>
+            </div>
+
+            {/* Premium */}
+            <div className="card border-gold/30 bg-gold/5 relative">
+              <div className="absolute -top-3 right-6 bg-gold text-obsidian text-xs font-bold px-3 py-1 rounded-full">
+                BELIEBT
+              </div>
+              <h3 className="text-xl font-display text-ivory mb-2">Premium</h3>
+              <p className="text-3xl font-display text-gold mb-6">19 €<span className="text-lg text-mist/60">/Monat</span></p>
+              <ul className="space-y-3 text-mist/80 mb-8">
+                <li className="flex items-center gap-2">
+                  <span className="text-gold">✓</span> Alles aus Free
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-gold">✓</span> 30 Voice-Minuten/Monat
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-gold">✓</span> Detaillierte Aspekte
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-gold">✓</span> Solar Return Analyse
+                </li>
+              </ul>
+              <Link href="/signup?plan=premium" className="btn-primary w-full text-center">
+                Premium wählen
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 border-t border-gold/10">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <p className="font-display text-gold">AstroMirror</p>
+              <p className="text-sm text-mist/50 mt-1">Reflexion, nicht Vorhersage.</p>
+            </div>
+
+            <div className="flex items-center gap-6 text-sm text-mist/60">
+              <Link href="/impressum" className="hover:text-ivory transition-colors">Impressum</Link>
+              <Link href="/datenschutz" className="hover:text-ivory transition-colors">Datenschutz</Link>
+              <Link href="/agb" className="hover:text-ivory transition-colors">AGB</Link>
+            </div>
+          </div>
+
+          <p className="mt-8 text-center text-xs text-mist/40">
+            © 2025 AstroMirror. Zur Reflexion & Unterhaltung – keine Lebensberatung.
+          </p>
+        </div>
+      </footer>
+    </div>
+  )
+}
