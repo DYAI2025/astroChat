@@ -9,15 +9,19 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'r2-bucket.flowith.net',
+      },
+      {
+        protocol: 'https',
         hostname: '*.supabase.co',
       },
     ],
   },
-  
+
   // API rewrites to backend
   async rewrites() {
     const apiUrl = process.env.API_URL || 'http://localhost:8000'
-    
+
     return [
       // Proxy direct API calls to FastAPI backend
       {
@@ -26,7 +30,7 @@ const nextConfig = {
       },
     ]
   },
-  
+
   // Security headers
   async headers() {
     return [
@@ -49,7 +53,7 @@ const nextConfig = {
       },
     ]
   },
-  
+
   // Webpack config for ElevenLabs widget
   webpack: (config) => {
     // Allow ElevenLabs custom elements
@@ -60,7 +64,7 @@ const nextConfig = {
         fullySpecified: false,
       },
     })
-    
+
     return config
   },
 }
