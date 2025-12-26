@@ -319,11 +319,11 @@ export default function VoicePage() {
           <ul className="space-y-2 text-sm text-mist/80">
             <li className="flex items-start gap-2">
               <span className="text-gold">•</span>
-              Frage nach spezifischen Transiten: "Was bedeutet Saturn Quadrat Sonne für mich?"
+              Frage nach spezifischen Transiten: &ldquo;Was bedeutet Saturn Quadrat Sonne für mich?&rdquo;
             </li>
             <li className="flex items-start gap-2">
               <span className="text-gold">•</span>
-              Reflektiere mit offenen Fragen: "Wie zeigt sich mein Aszendent?"
+              Reflektiere mit offenen Fragen: &ldquo;Wie zeigt sich mein Aszendent?&rdquo;
             </li>
             <li className="flex items-start gap-2">
               <span className="text-gold">•</span>

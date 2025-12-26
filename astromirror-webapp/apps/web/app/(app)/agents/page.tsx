@@ -49,8 +49,8 @@ export default function AstroAgentsPage() {
                 transition={{ delay: 0.3, duration: 0.6 }}
             >
                 <blockquote className="text-xl md:text-2xl font-serif-text italic text-mist/80 leading-relaxed">
-                    "Keine Schicksalsfrage, sondern eine{' '}
-                    <span className="text-gold">Erfolgsmeldung</span>."
+                    &ldquo;Keine Schicksalsfrage, sondern eine{' '}
+                    <span className="text-gold">Erfolgsmeldung</span>.&rdquo;
                 </blockquote>
                 <p className="mt-6 text-mist/50 text-sm max-w-xl mx-auto">
                     Wir betrachten das Geburts-Chart nicht als Schicksal, sondern als Landkarte
@@ -151,9 +151,9 @@ export default function AstroAgentsPage() {
                     Ein neues Bewusstsein
                 </div>
                 <p className="text-sm italic text-mist/50 max-w-xl mx-auto font-serif-text">
-                    "Wir geben Ihnen keine Vorhersage über das, was passieren wird.
+                    &ldquo;Wir geben Ihnen keine Vorhersage über das, was passieren wird.
                     Wir geben Ihnen die Gewissheit darüber, wer Sie bereits sind:
-                    Ein Gewinner, dessen wertvollste Anteile wir gemeinsam ans Licht holen."
+                    Ein Gewinner, dessen wertvollste Anteile wir gemeinsam ans Licht holen.&rdquo;
                 </p>
             </footer>
         </div>
